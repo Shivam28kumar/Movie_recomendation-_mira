@@ -1,0 +1,38 @@
+# version format ex. "0.0.1"
+version: "0.0.4"
+
+# Basic metadata for the agent
+metadata:
+  name: "Movie Recommendation System"
+  description: "This flow helps you GET the best movie recommendations, including OTT links and posters."
+  author: "shivam" # This username should match your account username
+  tags: [Movies, Hollywood, Bollywood, Tollywood, Cinema]
+  private: false # Access control for your flows (true/false)
+
+# Define the input variables required
+inputs:
+  topic:
+    type: string # Currently we only support String format
+    description: "Your preferred movies or genres."
+    required: true
+    example: "3 Idiots, Pushpa, Ramayana, etc."
+  style:
+    type: string
+    description: "Enter the name of the actor and director whose movies you like."
+    required: true
+    example: "Aamir Khan, Shah Rukh Khan, Govinda, etc."
+
+# LLM configuration
+model:
+  provider: "openai" # e.g., anthropic, openai, meta, etc.
+  name: "gpt-4o" # For supported LLM models, refer to the documentation
+
+# Prompt template configuration
+prompt: |
+  Recommend 5 of the best movies like this {topic}. The style of the hero and director is {style}.
+  Provide a brief description of each movie, show the movie poster, and include the link to watch them with the OTT platform.
+
+# ReadME configuration
+readme: |
+  This flow helps you suggest the best movies based on your preferences. It generates movie recommendations including a description, poster, OTT links, and where to watch.
+  Example: Input1: 3 Idiots, Input2: Pushpa.
